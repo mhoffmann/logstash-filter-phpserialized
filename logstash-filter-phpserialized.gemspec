@@ -4,9 +4,9 @@ Gem::Specification.new do |s|
   s.licenses = ['Apache License (2.0)']
   s.summary = "unserialize php serialized data"
   s.description = "This gem is a logstash plugin required to be installed on top of the Logstash core pipeline using $LS_HOME/bin/plugin install gemname. This gem is not a stand-alone program"
-  s.authors = [""]
+  s.authors = ["mhoffmann"]
   s.email = 'info@elastic.co'
-  s.homepage = ""
+  s.homepage = "https://github.com/mhoffmann/logstash-filter-phpserialized"
   s.require_paths = ["lib"]
 
   # Files
