@@ -8,8 +8,8 @@ class LogStash::Filters::PHPSerialized < LogStash::Filters::Base
   config_name "phpserialized"
 
   # Replace the message with this value.
-  config :target, :validate => :string, :default => "@message"
-  config :source, :validate => :string, :default => "@message"
+  config :target, :validate => :string, :default => "message"
+  config :source, :validate => :string, :default => "message"
 
 
   public
@@ -21,7 +21,7 @@ class LogStash::Filters::PHPSerialized < LogStash::Filters::Base
   def filter(event)
 
     value = event[@source]
-    if value.empty? == false
+    unless value.empty?
       begin
         data = PhpSerialization.load(value.gsub(/O:8:"stdClass"/, 'O:8:"StdClass"'))
       rescue TypeError, IndexError => err
