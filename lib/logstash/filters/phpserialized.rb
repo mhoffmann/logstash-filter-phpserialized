@@ -24,12 +24,10 @@ class LogStash::Filters::PHPSerialized < LogStash::Filters::Base
     unless value.empty?
       begin
         data = PhpSerialization.load(value.gsub(/O:8:"stdClass"/, 'O:8:"StdClass"'))
-      rescue TypeError, IndexError => err
-        @logger.warn("php unserialize failed, ", :err => err, :value => value)
+        event["[#{@target}]"] = data
       rescue
-        @logger.warn("something went wrong, ", :err => err, :value => value)
+        @logger.warn("phpunserialized failed to unserialize")
       end
-      event["[#{@target}]"] = data
     end
 
     filter_matched(event)
